@@ -10,8 +10,8 @@ ACCESS_KEY = "YOUR_ACCESS_KEY"
 SECRET_KEY = 'YOUR_SECRET_KEY'
 
 file_path = "C:/Users/Downloads/"   # Path to save the output
-local_file = "Airflow_call.wav"     # Your audio file name
-bucket_name = "YOUR_BUCKET_NAME"        
+local_file = "call.wav"     # Your audio file name
+bucket_name = "YOUR_AWS_BUCKET_NAME"        
 
 def upload_to_aws(local_file, bucket, s3_file):
     s3 = boto3.client('s3', aws_access_key_id=ACCESS_KEY,
@@ -61,7 +61,7 @@ def amazon_transcribe(audio_file_name, max_speakers = -1):
   if max_speakers > 10:
     raise ValueError("Maximum detected speakers is 10.")
 
-  job_uri = "s3://mystt-bucket/" + audio_file_name 
+  job_uri = "s3://bucket_name/" + audio_file_name 
   job_name = (audio_file_name.split('.')[0]).replace(" ", "")
   
   # check if name is taken or not
